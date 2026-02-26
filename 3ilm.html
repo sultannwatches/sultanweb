@@ -25,6 +25,7 @@
         .menu-links a {
             color: #fff; text-decoration: none; margin-left: 40px; font-size: 0.95rem;
             letter-spacing: 2px; text-transform: uppercase; transition: color 0.4s; font-family: 'Cinzel', serif; display: flex; align-items: center;
+            white-space: nowrap;
         }
         .menu-links a:hover { color: #D4AF37; }
         .menu-destacado { color: #D4AF37 !important; font-weight: 600; }
@@ -38,6 +39,21 @@
             margin-right: 8px; 
             text-transform: none; 
             display: inline-block; 
+        }
+
+        /* --- AJUSTE MÓVIL ESPECÍFICO PARA EL MENÚ --- */
+        @media screen and (max-width: 850px) {
+            nav { padding: 10px 15px; } /* Reducimos padding lateral */
+            .logo-img { max-height: 45px; } /* Logo más pequeño en móvil */
+            .menu-links a {
+                margin-left: 15px; /* Menos espacio entre enlaces */
+                font-size: 0.7rem; /* Letra un poco más pequeña */
+                letter-spacing: 1px;
+            }
+            .nav-arabic-fix {
+                font-size: 1.1rem; /* Árabe ajustado */
+                margin-right: 4px;
+            }
         }
 
         /* Hero Section */
@@ -106,6 +122,10 @@
             .timeline-container::after { left: 30px; }
             .timeline-item { width: 100%; left: 0 !important; padding-left: 80px !important; text-align: left !important; }
             .timeline-item::after { left: 22px !important; }
+            /* Ajuste de títulos en móvil */
+            .hero-title-ar { font-size: 4rem; }
+            .hero-title-es { font-size: 1.8rem; letter-spacing: 8px; }
+            .hero-desc { font-size: 1.1rem; }
         }
 
         footer { background-color: #020202; padding: 60px 10% 30px; text-align: center; border-top: 1px solid #111; margin-top: 50px;}
@@ -118,8 +138,8 @@
         <a href="index.html"><img src="logo.png" alt="SULTAN" class="logo-img"></a>
         <div class="menu-links">
             <a href="index.html#legado">El Legado</a>
-            <a href="3ilm.html" class="menu-destacado"><span class="nav-arabic-fix">العِلْم</span> (Saber)</a>
-            <a href="index.html#contacto">Adquisición</a>
+            <a href="3ilm.html" class="menu-destacado"><span class="nav-arabic-fix">العِلْم</span> Saber</a>
+            <a href="index.html#adquisicion">Adquisición</a>
         </div>
     </nav>
 
