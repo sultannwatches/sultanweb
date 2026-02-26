@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SULTAN | El Dominio del Tiempo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Cormorant Garamond', serif; background-color: #050709; color: #e0e0e0; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Cinzel', serif; font-weight: 400; }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            position: fixed; top: 0; width: 100%; 
+            background: rgba(5, 7, 9, 0.95); padding: 15px 60px; display: flex;
+            justify-content: space-between; align-items: center; 
+            z-index: 9999; border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .logo-img { max-height: 70px; width: auto; transition: transform 0.4s ease; }
+        .logo-img:hover { transform: scale(1.05); }
+        .menu-links { display: flex; align-items: center; }
+        .menu-links a {
+            color: #fff; text-decoration: none; margin-left: 40px; font-size: 0.95rem;
+            letter-spacing: 2px; text-transform: uppercase; transition: color 0.4s; font-family: 'Cinzel', serif;
+        }
+        .menu-links a:hover { color: #D4AF37; }
+        .menu-destacado { color: #D4AF37 !important; font-weight: 600; }
+        .nav-arabic-fix { font-family: 'Amiri', serif; font-size: 1.5rem; margin-right: 8px; vertical-align: middle; }
+
+        /* --- HERO (INICIO) --- */
+        #inicio {
+            position: relative; min-height: 100vh; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; text-align: center;
+            background-color: #030405; padding: 120px 20px 140px;
+        }
+        .hero-glow {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(0,0,0,0) 70%);
+            z-index: 1; animation: pulseGlow 8s infinite alternate ease-in-out;
+        }
+        .hero-content { position: relative; z-index: 10; width: 100%; }
+        .bismillah-text {
+            font-family: 'Amiri', serif; font-size: clamp(2rem, 4vw, 3.5rem); display: block;
+            background: linear-gradient(135deg, #F3E5AB 10%, #D4AF37 50%, #7A5B2B 90%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 20px; animation: fadeUp 2.5s ease forwards 0.5s; opacity: 0;
+        }
+        .hero-title {
+            font-size: clamp(3rem, 7vw, 6.5rem); letter-spacing: 25px; margin-right: -25px;
+            background: linear-gradient(to bottom, #E8D399 0%, #B88A44 60%, #7A5B2B 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: fadeUp 2s ease forwards 1.2s; opacity: 0;
+        }
+        .hero-subtitle {
+            font-size: 1rem; color: #8a7346; text-transform: uppercase; letter-spacing: 15px; margin-right: -15px;
+            animation: fadeUp 2s ease forwards 1.8s; opacity: 0;
+        }
+
+        /* --- INDICADOR DE SCROLL --- */
+        .scroll-indicator {
+            position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 15px;
+            z-index: 10; opacity: 0; animation: fadeUp 2s ease forwards 2.5s;
+        }
+        .scroll-text { color: #8a7346; font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase; }
+        .scroll-line { width: 1px; height: 80px; background: rgba(212, 175, 55, 0.1); position: relative; overflow: hidden; }
+        .scroll-line::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 30px;
+            background: linear-gradient(to bottom, transparent, #D4AF37, transparent);
+            animation: scrollDown 2.5s infinite ease-in-out;
+        }
+
+        @keyframes scrollDown { 0% { top: -30px; opacity: 0; } 50% { opacity: 1; } 100% { top: 80px; opacity: 0; } }
+        @keyframes pulseGlow { from { opacity: 0.4; } to { opacity: 0.8; } }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- SECCIÓN LEGADO (HADIZ) --- */
+        #legado { padding: 150px 10%; text-align: center; background-color: #050709; }
+        .text-epic { font-size: 2.2rem; line-height: 1.6; color: #fff; max-width: 950px; margin: 0 auto; font-weight: 300; }
+        .text-epic span { 
+            background: linear-gradient(135deg, #F3E5AB 10%, #D4AF37 50%, #7A5B2B 90%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-style: italic; font-weight: 600;
+        }
+        .hadiz-source { font-size: 0.9rem; color: #555; display: block; margin-top: 15px; font-family: 'Cinzel', serif; letter-spacing: 2px; }
+
+        /* --- SECCIÓN DE DETALLES --- */
+        #detalles { padding: 100px 10%; background-color: #050709; overflow: hidden; }
+        .expo-container { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; margin-bottom: 150px; }
+        .expo-container.reverse { direction: rtl; }
+        .expo-container.reverse .expo-text { direction: ltr; }
+        .expo-image-wrapper { position: relative; z-index: 2; }
+        .expo-image-wrapper::before {
+            content: ''; position: absolute; top: 10%; left: 10%; width: 80%; height: 80%;
+            background: rgba(212, 175, 55, 0.05); filter: blur(60px); z-index: -1;
+        }
+        .expo-img {
+            width: 100%; height: 500px; object-fit: contain;
+            filter: drop-shadow(0 30px 50px rgba(0,0,0,0.9));
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .expo-container:hover .expo-img { transform: scale(1.05) translateY(-10px); }
+        .expo-text { padding: 20px; }
+        .expo-label { font-family: 'Cinzel', serif; color: #D4AF37; font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 15px; display: block; }
+        .expo-title { font-size: 3rem; margin-bottom: 25px; line-height: 1.1; color: #fff; }
+        .expo-desc { font-size: 1.4rem; color: #888; line-height: 1.8; font-weight: 300; }
+
+        /* --- INGENIERÍA DEL LEGADO --- */
+        #especificaciones { padding: 120px 10%; background-color: #030405; text-align: center; border-top: 1px solid #111; }
+        .specs-title { font-size: 2.5rem; color: #fff; margin-bottom: 60px; letter-spacing: 3px; }
+        .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; max-width: 1000px; margin: 0 auto; }
+        .spec-item { border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 25px; }
+        .spec-label { display: block; color: #D4AF37; font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
+        .spec-value { color: #ccc; font-size: 1.2rem; font-weight: 300; }
+
+        /* --- CONTACTO --- */
+        #contacto { padding: 150px 20px; text-align: center; border-top: 1px solid #111; background: radial-gradient(circle at bottom, #0a0e12 0%, #050709 70%); }
+        .btn-dorado {
+            display: inline-block; border: 1px solid #D4AF37; color: #D4AF37; padding: 20px 50px;
+            text-decoration: none; font-family: 'Cinzel', serif; letter-spacing: 4px; transition: 0.4s; margin-top: 40px; text-transform: uppercase;
+        }
+        .btn-dorado:hover { background: #D4AF37; color: #000; box-shadow: 0 0 40px rgba(212, 175, 55, 0.3); }
+
+        /* --- ANIMACIONES --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { padding: 80px 10% 40px; text-align: center; background: #020202; border-top: 1px solid #111; }
+        .footer-logo { max-height: 70px; margin-bottom: 30px; opacity: 0.8; }
+
+        @media (max-width: 1000px) {
+            .expo-container, .expo-container.reverse { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+            .expo-img { height: 350px; }
+            nav { padding: 15px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html"><img src="logo.png" alt="SULTAN" class="logo-img"></a>
+        <div class="menu-links">
+            <a href="#legado">El Legado</a>
+            <a href="3ilm.html" class="menu-destacado"><span class="nav-arabic-fix">العِلْم</span> (Saber)</a>
+            <a href="#contacto">Adquisición</a>
+        </div>
+    </nav>
+
+    <section id="inicio">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <span class="bismillah-text">﷽</span>
+            <h1 class="hero-title">SULTAN</h1>
+            <h2 class="hero-subtitle">El valor del tiempo</h2>
+        </div>
+        <div class="scroll-indicator">
+            <span class="scroll-text">Descubre el legado</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <section id="legado">
+        <div class="reveal">
+            <p class="text-epic">
+                "Hay dos bendiciones en las que mucha gente sale perdiendo: <span>la salud y el tiempo libre</span>."
+                <span class="hadiz-source">— Sahih al-Bujari 6412</span>
+            </p>
+            <br><br>
+            <p class="text-epic" style="font-size: 1.8rem;">
+                SULTAN no es un accesorio, es un recordatorio constante. En la cosmovisión de nuestros ancestros, el tiempo era un <span>Amānah</span>, un depósito sagrado. Hemos forjado cada pieza como un tributo a la era de la precisión, diseñada para quienes <span>dominan sus horas</span> con la paciencia de un sabio.
+            </p>
+        </div>
+    </section>
+
+    <section id="detalles">
+        <div class="expo-container reveal">
+            <div class="expo-image-wrapper">
+                <img src="zoomreloj.png" alt="Sultan Esfera" class="expo-img">
+            </div>
+            <div class="expo-text">
+                <span class="expo-label">LA ESENCIA</span>
+                <h3 class="expo-title">La Profundidad del Esmeralda</h3>
+                <p class="expo-desc">No elegimos esta tonalidad por azar. Es el color de la nobleza y la herencia. Una esfera que muta con la luz, revelando una presencia que exige respeto sin necesidad de alzar la voz.</p>
+            </div>
+        </div>
+
+        <div class="expo-container reverse reveal">
+            <div class="expo-image-wrapper">
+                <img src="coronareloj.png" alt="Sultan Corona" class="expo-img">
+            </div>
+            <div class="expo-text">
+                <span class="expo-label">LA IDENTIDAD</span>
+                <h3 class="expo-title">Nuestras Raíces en tu Muñeca</h3>
+                <p class="expo-desc">La caligrafía matemática que una vez trazó los mapas del mundo conocido, ahora marca tus horas. Un puente entre la ingeniería de precisión contemporánea y el orgullo de nuestro pasado.</p>
+            </div>
+        </div>
+
+        <div class="expo-container reveal">
+            <div class="expo-image-wrapper">
+                <img src="traseroreloj.png" alt="Sultan Trasera" class="expo-img">
+            </div>
+            <div class="expo-text">
+                <span class="expo-label">EL SECRETO</span>
+                <h3 class="expo-title">La Ingeniería del Sabr</h3>
+                <p class="expo-desc">Grabado en el corazón de la pieza: <i>صبر</i>. La paciencia no es pasividad; es la fuerza inquebrantable de saber esperar el momento exacto. El reloj dicta los segundos, pero tú dominas tu tiempo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="especificaciones" class="reveal">
+        <h2 class="specs-title">Ingeniería del Legado</h2>
+        <div class="specs-grid">
+            <div class="spec-item">
+                <span class="spec-label">Cristal</span>
+                <span class="spec-value">Zafiro Resistente a Arañazos</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Resistencia al Agua</span>
+                <span class="spec-value">5 ATM (50 Metros)</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Movimiento</span>
+                <span class="spec-value">Automático Japonés Miyota</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Correa</span>
+                <span class="spec-value">Acero Inoxidable 316L</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="reveal">
+        <h2 class="expo-title">Reclama tu Tiempo</h2>
+        <p class="expo-desc" style="max-width: 600px; margin: 0 auto;">Piezas limitadas para quienes entienden que el tiempo es el único lujo real.</p>
+        
+        <a href="https://wa.me/34663511195?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%DA%A9%D9%85.%20Deseo%20recibir%20informaci%C3%B3n%20exclusiva%20sobre%20la%20adquisici%C3%B3n%20de%20la%20pieza%20SULTAN." target="_blank" class="btn-dorado">Solicitar Asesoramiento</a>
+    </section>
+
+    <footer>
+        <img src="logo.png" alt="SULTAN" class="footer-logo">
+        <p style="color: #444; letter-spacing: 2px; font-size: 0.8rem; text-transform: uppercase;">&copy; 2026 SULTAN TIMEPIECES. El dominio del tiempo.</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+    </script>
+</body>
+</html>
