@@ -30,7 +30,6 @@
         .menu-links a:hover { color: #D4AF37; }
         .menu-destacado { color: #D4AF37 !important; font-weight: 600; }
         
-        /* LA CLASE DEL ARABE EN EL MENU */
         .nav-arabic-fix { 
             font-family: 'Amiri', serif; 
             font-size: 1.6rem; 
@@ -41,19 +40,19 @@
             display: inline-block; 
         }
 
-        /* --- AJUSTE MÓVIL ESPECÍFICO PARA EL MENÚ --- */
+        /* AJUSTE MÓVIL (MENÚ Y HERO) */
         @media screen and (max-width: 850px) {
-            nav { padding: 10px 15px; } /* Reducimos padding lateral */
-            .logo-img { max-height: 45px; } /* Logo más pequeño en móvil */
+            nav { padding: 10px 15px; }
+            .logo-img { max-height: 45px; }
             .menu-links a {
-                margin-left: 15px; /* Menos espacio entre enlaces */
-                font-size: 0.7rem; /* Letra un poco más pequeña */
+                margin-left: 15px;
+                font-size: 0.68rem;
                 letter-spacing: 1px;
             }
-            .nav-arabic-fix {
-                font-size: 1.1rem; /* Árabe ajustado */
-                margin-right: 4px;
-            }
+            .nav-arabic-fix { font-size: 1.1rem; margin-right: 4px; }
+            .hero-title-ar { font-size: 4.5rem !important; }
+            .hero-title-es { font-size: 2rem !important; letter-spacing: 8px !important; }
+            .hero-desc { font-size: 1.1rem !important; }
         }
 
         /* Hero Section */
@@ -62,25 +61,19 @@
             position: relative;
         }
         
-        /* Título Central limpio */
         .hero-title-ar { 
-            font-family: 'Amiri', serif; 
-            font-size: 7rem; 
+            font-family: 'Amiri', serif; font-size: 7rem; 
             background: linear-gradient(135deg, #F3E5AB 10%, #D4AF37 50%, #7A5B2B 90%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            margin-bottom: 5px; 
-            line-height: 1.3; 
-            padding-bottom: 35px;
-            opacity: 0; 
-            animation: fadeInUp 1.2s forwards 0.2s; 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            margin-bottom: 5px; line-height: 1.3; padding-bottom: 35px;
+            opacity: 0; animation: fadeInUp 1.2s forwards 0.2s; 
             filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.2));
         }
         
         .hero-title-es { font-size: 3rem; color: #fff; letter-spacing: 15px; text-transform: uppercase; margin-bottom: 30px; opacity: 0; animation: fadeInUp 1.2s forwards 0.5s; }
         .hero-desc { max-width: 700px; margin: 0 auto; font-size: 1.4rem; color: #aaa; font-style: italic; opacity: 0; animation: fadeInUp 1.2s forwards 0.8s; line-height: 1.8; }
 
-        /* Timeline */
+        /* Timeline y Cards */
         .timeline-container { position: relative; max-width: 1200px; margin: 100px auto; padding: 0 5%; }
         .timeline-container::after {
             content: ''; position: absolute; width: 1px; background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.5), transparent);
@@ -94,27 +87,24 @@
 
         .timeline-item::after {
             content: ''; position: absolute; top: 50%; width: 16px; height: 16px; background: #050709;
-            border: 2px solid #D4AF37; border-radius: 50%; transform: translateY(-50%); z-index: 2; transition: all 0.4s;
+            border: 2px solid #D4AF37; border-radius: 50%; transform: translateY(-50%); z-index: 2;
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
         .timeline-item:nth-child(odd)::after { right: -8px; }
         .timeline-item:nth-child(even)::after { left: -8px; }
 
-        /* Cards */
         .content-card {
             background: linear-gradient(145deg, rgba(15, 20, 25, 0.8) 0%, rgba(5, 7, 9, 0.9) 100%);
             border: 1px solid rgba(212, 175, 55, 0.1); padding: 50px 40px; display: block; text-decoration: none;
-            transition: all 0.5s ease; position: relative; overflow: hidden;
+            transition: all 0.5s ease;
         }
-        .content-card:hover { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.6); transform: translateY(-5px); }
+        .content-card:hover { border-color: rgba(212, 175, 55, 0.4); transform: translateY(-5px); }
 
         .prof-num { font-family: 'Cinzel', serif; font-size: 1.5rem; color: rgba(212, 175, 55, 0.3); letter-spacing: 4px; display: block; margin-bottom: 10px; }
-        .prof-ar { font-family: 'Amiri', serif; font-size: 4rem; color: #fff; line-height: 1.2; margin-bottom: 5px; padding-bottom: 12px; transition: color 0.4s; }
+        .prof-ar { font-family: 'Amiri', serif; font-size: 4rem; color: #fff; line-height: 1.2; margin-bottom: 5px; padding-bottom: 12px; }
         .content-card:hover .prof-ar { color: #D4AF37; }
         .prof-es { font-family: 'Cinzel', serif; font-size: 2rem; color: #D4AF37; margin-bottom: 10px; letter-spacing: 2px; }
         .prof-desc { font-size: 1.2rem; color: #999; font-style: italic; line-height: 1.6; }
-
-        .sello-card { border-color: rgba(212, 175, 55, 0.5); background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, rgba(5, 7, 9, 0.9) 100%); }
 
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
@@ -122,10 +112,6 @@
             .timeline-container::after { left: 30px; }
             .timeline-item { width: 100%; left: 0 !important; padding-left: 80px !important; text-align: left !important; }
             .timeline-item::after { left: 22px !important; }
-            /* Ajuste de títulos en móvil */
-            .hero-title-ar { font-size: 4rem; }
-            .hero-title-es { font-size: 1.8rem; letter-spacing: 8px; }
-            .hero-desc { font-size: 1.1rem; }
         }
 
         footer { background-color: #020202; padding: 60px 10% 30px; text-align: center; border-top: 1px solid #111; margin-top: 50px;}
@@ -137,7 +123,7 @@
     <nav>
         <a href="index.html"><img src="logo.png" alt="SULTAN" class="logo-img"></a>
         <div class="menu-links">
-            <a href="index.html#legado">El Legado</a>
+            <a href="index.html#legado">Legado</a>
             <a href="3ilm.html" class="menu-destacado"><span class="nav-arabic-fix">العِلْم</span> Saber</a>
             <a href="index.html#adquisicion">Adquisición</a>
         </div>
@@ -223,7 +209,7 @@
             </a>
         </div>
         <div class="timeline-item reveal">
-            <a href="profeta-muhammad.html" class="content-card sello-card">
+            <a href="profeta-muhammad.html" class="content-card">
                 <span class="prof-num">X</span>
                 <div class="prof-ar">محمد</div>
                 <h2 class="prof-es">Muhammad (ﷺ)</h2>
